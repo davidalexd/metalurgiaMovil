@@ -54,9 +54,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderWidth: 1, // Grosor del borde
-        borderColor: '#586069', // Color del borde
+        borderColor: '#999', // Color del borde
         marginBottom: 5,
-        padding: 5,
+        padding: 10,
+        borderRadius: 5,
 
     },
     subContentLeft: {

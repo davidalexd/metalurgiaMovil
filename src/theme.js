@@ -1,11 +1,12 @@
 const theme = {
     colors: {
-        textPrimary:'#24292e',
-        textSecondary:'#586069',
-        primary:'#0366d6'
+        textPrimary: '#24292e',
+        textSecondary: '#586069',
+        primary: '#0366d6'
 
     },
     fontSizes: {
+        small: 12,
         body: 14,
         Subheading: 16
     },
@@ -16,8 +17,9 @@ const theme = {
         normal: "400",
         bold: "700"
     },
-    spacingsBottom:{
-        normal:10,
+    spacings: {
+        normal: 10,
+        big: 20,
     }
 }
 

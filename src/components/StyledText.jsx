@@ -8,14 +8,21 @@ const styles = StyleSheet.create({
         fontFamily: theme.fonts.main,
         fontWeight: theme.fontWeights.normal,
     },
-    spacingNormal:{
-        marginBottom:theme.spacingsBottom.normal,
+    spacingBottomNormal:{
+        marginBottom:theme.spacings.normal,
     },
+    spacingTopNormal:{
+        marginTop:theme.spacings.normal,
+    },
+
     bold: {
         fontWeight: theme.fontWeights.bold,
     },
     subheading: {
         fontSize: theme.fontSizes.Subheading
+    },
+    small:{
+        fontSize: theme.fontSizes.small
     },
     colorPrimary: {
         color: theme.colors.textPrimary,
@@ -28,15 +35,17 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function StyledText({ align,children, color, fontSize, big,spacingBottom,fontWeight, style, ...restOfProps }) {
+export default function StyledText({ align,children, color, fontSize,spacingBottom,spacingTop,fontWeight, style, ...restOfProps }) {
     const textStyles = [
         styles.text,
         color === 'primary' && styles.colorPrimary,
         color === 'secondary' && styles.colorSecondary,
         fontSize === 'subheading' && styles.subheading,
+        fontSize === 'small' && styles.small,
         fontWeight === 'bold' && styles.bold,
         align === 'center' && styles.textAlignCenter,
-        spacingBottom==='normal' && styles.spacingNormal,
+        spacingBottom==='normal' && styles.spacingBottomNormal,
+        spacingTop==='normal' && styles.spacingTopNormal,
         style
 
     ]

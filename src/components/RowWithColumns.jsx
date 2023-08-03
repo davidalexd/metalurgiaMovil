@@ -9,9 +9,10 @@ import { selectedFormula } from '../helpers/helperFolmula'
 import TableResult from './TableResult'
 import StyledPicker from './StyledPicker'
 
-const initialResult = [{ title: 'Sin resultados', value: 'Sin valores' }]
-const RowWithColumns = ({ rows, initialValues, formulaIdentifier, description }) => {
-    const [resultValue, setResultValue] = useState(initialResult)
+
+
+const RowWithColumns = ({ rowsElements, rowsElementsRes, initialValues, initialValuesRes, formulaIdentifier, description,numberCols,resElements}) => {
+    const [resultValue, setResultValue] = useState({})
     const FormikInputValue = ({ name, ...props }) => {
         const [field, meta, helpers] = useField(name)
         return <>
@@ -42,19 +43,20 @@ const RowWithColumns = ({ rows, initialValues, formulaIdentifier, description })
 
 
     const handlerSelectedFormula = (values) => {
-        const result = selectedFormula(formulaIdentifier, values)
-        setResultValue(result)
+        const result = selectedFormula(formulaIdentifier, values,resElements)
+
+        setResultValue({...resultValue,...result})
     }
 
 
     const formulaValidationSchema = () => {
-        const result = selectedFormula(formulaIdentifier)
-        return result
+        const schemaValidation = selectedFormula(formulaIdentifier)
+        return schemaValidation
     }
 
     const resetInputValues = (resetForm) => {
         resetForm(initialValues);
-        setResultValue(initialResult)
+        setResultValue(initialValuesRes)
     }
     return (
         <Formik validationSchema={Yup.lazy(formulaValidationSchema)} initialValues={initialValues} onSubmit={values => handlerSelectedFormula(values)}>
@@ -66,7 +68,7 @@ const RowWithColumns = ({ rows, initialValues, formulaIdentifier, description })
                         <StyledText color='secondary' spacingBottom='normal'>{description}</StyledText>
                         <StyledText fontSize='subheading' fontWeight='bold'>Variables</StyledText>
                         <View style={styles.content}>
-                            {rows.map((row, rowIndex) => (
+                            {rowsElements.map((row, rowIndex) => (
                                 <View key={rowIndex} style={styles.row}>
                                     {row.map((element) => (
                                         <View
@@ -91,7 +93,13 @@ const RowWithColumns = ({ rows, initialValues, formulaIdentifier, description })
                         </View>
                         <StyledText fontSize='subheading' fontWeight='bold' spacingBottom='normal'>Resultados</StyledText>
                         <View style={styles.content}>
-                            <TableResult resultValue={resultValue} />
+                            <TableResult
+                                rows={rowsElementsRes}
+                                initialValues={initialValuesRes}
+                                setValues={setResultValue}
+                                values={resultValue}
+                                numberCols={numberCols}
+                                />
                         </View>
                     </ScrollView>
                     <View style={styles.buttonContent}>
@@ -102,8 +110,6 @@ const RowWithColumns = ({ rows, initialValues, formulaIdentifier, description })
                             <StyledText align='center' fontSize='subheading' fontWeight='bold' color='secondary'>Limpiar</StyledText>
                         </TouchableOpacity>
                     </View>
-
-
                 </View>
             }}
         </Formik>

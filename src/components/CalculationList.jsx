@@ -7,7 +7,6 @@ const CalculationList = ({ calculations }) => {
     const { navigate } = useNavigation();
     const handlerViewPress = (item) => {
         navigate('InfoCalculate', { item })
-
     }
 
     return (

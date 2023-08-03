@@ -1,15 +1,15 @@
-export const organizeElementsInRows = (elements, numberCols) => {
+export const organizeElementsInRows = (items, numberCols) => {
     const rows = [];
     let currentRow = [];
     let currentIndex = 0;
 
-    for (let i = 0; i < elements.length; i++) {
-        const element = elements[i];
-        currentRow.push(element);
+    
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        currentRow.push(item);
+        currentIndex += item.span;
 
-        currentIndex += element.span;
-
-        if (currentIndex >= numberCols || i === elements.length - 1) {
+        if (currentIndex >= numberCols || i === items.length - 1) {
             rows.push(currentRow);
             currentRow = [];
             currentIndex = 0;
@@ -18,3 +18,15 @@ export const organizeElementsInRows = (elements, numberCols) => {
 
     return rows;
 };
+
+export const organizeInitialValues = (items) => {
+    const initialValuesForm = items.reduce((obj, item) => {
+        if (item.type !== "label") {
+            obj[item.id] = '';
+        }
+        return obj;
+    }, {});
+    return initialValuesForm
+}
+
+

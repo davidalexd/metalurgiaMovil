@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import StyledText from './StyledText'
-const TableResult = ({ resultValue }) => {
+import StyledTextInput from './StyledTextInput'
+const TableResult = ({ rows, initialValues, setValues, values, numberCols }) => {
+    useEffect(() => {
+        setValues(initialValues)
+    }, [initialValues])
+
     return (
         <View style={styles.container}>
-            {resultValue.map((item, index) => <View key={index} style={styles.row}>
-                <StyledText style={styles.cell} color='secondary' fontWeight='bold'>{item.title}</StyledText>
-                <StyledText style={styles.cell}>{item.value}</StyledText>
-            </View>)}
+            {rows.map((row, rowIndex) => (
+                <View key={rowIndex} style={styles.row}>
+                    {row.map((element) => (
+                        <View
+                            key={element.id}
+                            style={{ ...styles.cell, flex: element.span }}
+                        >
+                            {element.type === 'label' && <StyledText align={element.span === numberCols ? 'center' : ''} color='secondary' fontWeight='bold'>{`${element.name}:`}</StyledText>}
+                            {element.type === 'input' && <StyledText color='primary'>{values[element.id]}</StyledText>}
+                            {/* {element.type === 'input' && <StyledTextInput color='primary' placeholder='Sin datos' editable={false}>{values[element.id]}</StyledTextInput>} */}
+                        </View>
+                    ))}
+                </View>
+            ))}
         </View>
     )
 }
@@ -18,11 +33,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     row: {
-        flexDirection: 'row'
+        flexDirection: 'row',
     },
     cell: {
+        justifyContent: 'center',
         padding: 5,
-        flex: 1
-    }
+    },
 
 })

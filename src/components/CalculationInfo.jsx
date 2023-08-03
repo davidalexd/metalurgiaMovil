@@ -2,26 +2,13 @@ import React, { useState } from 'react'
 import StyledText from './StyledText'
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import RowWithColumns from './RowWithColumns';
-import { organizeElementsInRows } from '../helpers/helperElements';
+import { organizeElementsInRows, organizeInitialValues } from '../helpers/helperElements';
 
 
 
 
 const CalculationInfo = ({ route }) => {
-    const { item: { description, title, efficiency, cal_image, elements, numberCols, id } } = route.params;
-
-    const organizeInitialValues = () => {
-        const initialValuesForm = elements.reduce((obj, item) => {
-            if (item.type !== "label") {
-                obj[item.id] = '';
-            }
-            return obj;
-        }, {});
-        return initialValuesForm
-
-    }
-
-
+    const { item: { description, title, efficiency, cal_image, elements,resElements,numberCols, id } } = route.params;
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -42,9 +29,14 @@ const CalculationInfo = ({ route }) => {
                 </View>
                 <RowWithColumns
                     description={description}
-                    rows={organizeElementsInRows(elements,numberCols)}
                     formulaIdentifier={id}
-                    initialValues={organizeInitialValues()}
+                    rowsElements={organizeElementsInRows(elements,numberCols)}
+                    rowsElementsRes={organizeElementsInRows(resElements,numberCols)}
+                    initialValues={organizeInitialValues(elements)}
+                    initialValuesRes={organizeInitialValues(resElements)}
+                    numberCols={numberCols}
+                    resElements={resElements}
+        
                 />
 
             </View>

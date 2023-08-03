@@ -10,7 +10,7 @@ export const selectedFormula = (formulaIdentifier, values, resElements) => {
             result = values ? con2meta2(values, resElements) : validationCon2meta2()
             break;
 
-        default:
+        default://Hola soy carlos
 
             break;
     }

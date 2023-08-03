@@ -48,6 +48,9 @@ export default [
                         { id: 'concentrado1-meta1-resp-lb-concentrationRatio', name: `Ratio Concentración`, type: "label", span: 1 },
                         { id: 'concentrado1-meta1-resp-lbv-concentrationRatio', name: 'concentrationRatio value', type: "input", span: 2 },
                     ]
+                },{
+                    id:'con1Metal2',
+                    title:"1 Conc. 2 Metales",
                 }]
             },
             {

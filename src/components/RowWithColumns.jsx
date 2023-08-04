@@ -11,7 +11,7 @@ import StyledPicker from './StyledPicker'
 
 
 
-const RowWithColumns = ({ rowsElements, rowsElementsRes, initialValues, initialValuesRes, formulaIdentifier, description,numberCols,resElements}) => {
+const RowWithColumns = ({ rowsElements, rowsElementsRes, initialValues, initialValuesRes, formulaIdentifier, description, numberCols, resElements }) => {
     const [resultValue, setResultValue] = useState({})
     const FormikInputValue = ({ name, ...props }) => {
         const [field, meta, helpers] = useField(name)
@@ -43,9 +43,9 @@ const RowWithColumns = ({ rowsElements, rowsElementsRes, initialValues, initialV
 
 
     const handlerSelectedFormula = (values) => {
-        const result = selectedFormula(formulaIdentifier, values,resElements)
+        const result = selectedFormula(formulaIdentifier, values, resElements)
 
-        setResultValue({...resultValue,...result})
+        setResultValue({ ...resultValue, ...result })
     }
 
 
@@ -99,7 +99,7 @@ const RowWithColumns = ({ rowsElements, rowsElementsRes, initialValues, initialV
                                 setValues={setResultValue}
                                 values={resultValue}
                                 numberCols={numberCols}
-                                />
+                            />
                         </View>
                     </ScrollView>
                     <View style={styles.buttonContent}>

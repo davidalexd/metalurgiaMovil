@@ -5,8 +5,7 @@ import StyledTextInput from './StyledTextInput'
 const TableResult = ({ rows, initialValues, setValues, values, numberCols }) => {
     useEffect(() => {
         setValues(initialValues)
-    }, [initialValues])
-
+    }, [])
     return (
         <View style={styles.container}>
             {rows.map((row, rowIndex) => (
@@ -16,9 +15,8 @@ const TableResult = ({ rows, initialValues, setValues, values, numberCols }) => 
                             key={element.id}
                             style={{ ...styles.cell, flex: element.span }}
                         >
-                            {element.type === 'label' && <StyledText align={element.span === numberCols ? 'center' : ''} color='secondary' fontWeight='bold'>{`${element.name}:`}</StyledText>}
-                            {element.type === 'input' && <StyledText color='primary'>{values[element.id]}</StyledText>}
-                            {/* {element.type === 'input' && <StyledTextInput color='primary' placeholder='Sin datos' editable={false}>{values[element.id]}</StyledTextInput>} */}
+                            {element.type === 'label' && <StyledText align={element.span === numberCols ? 'center' : ''} color='secondary' fontWeight='bold'>{`${element.name}`}</StyledText>}
+                            {element.type === 'input' && <StyledTextInput color='primary' placeholder='Sin datos' editable={false}>{values[element.id]}</StyledTextInput>}
                         </View>
                     ))}
                 </View>

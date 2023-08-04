@@ -30,12 +30,15 @@ const con1meta1 = (values, resElements) => {
     const recovery = (m2 * concentrated) / (m1 * f) * 100;
     const concentrationRatio = f / concentrated;
 
+
+
     const calculatedVariables = [
-        `${metal} ${concentrated}`,
+        concentrated,
         tailings,
-        `${metal} ${recovery}`,
-        `${metal} ${concentrationRatio}`,
+        recovery,
+        concentrationRatio,
     ];
+
     const objectResult = parseResult(resElements, calculatedVariables)
 
     return objectResult
@@ -79,14 +82,16 @@ const con2meta2 = (values, resElements) => {
     const ratioMetal2 = f / concentratedMetal2;
 
 
+
+
     const calculatedVariables = [
-        `${metal1} ${concentratedMetal1}`,
-        `${metal2} ${concentratedMetal2}`,
+        concentratedMetal1,
+        concentratedMetal2,
         tailings,
-        `${metal1} ${recoveryMetal1}`,
-        `${metal2} ${recoveryMetal2}`,
-        `${metal1} ${ratioMetal1}`,
-        `${metal2} ${ratioMetal2}`,
+        recoveryMetal1,
+        recoveryMetal2,
+        ratioMetal1,
+        ratioMetal2,
     ];
 
     const objectResult = parseResult(resElements, calculatedVariables)
@@ -124,7 +129,11 @@ const parseResult = (resElements, calculatedVariables = []) => {
     let propertyNames = values.map(el => (el.id))
 
     const result = propertyNames.reduce((obj, item, index) => {
-        obj[item] = calculatedVariables[index];
+        let number = calculatedVariables[index]
+        let isValidNumber = isFinite(number);
+        obj[item] = isValidNumber ? parseFloat(number).toFixed(4) : 'Valores Invalidos';
+
+
         return obj;
     }, {});
 

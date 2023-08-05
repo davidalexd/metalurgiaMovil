@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     bold: {
         fontWeight: theme.fontWeights.bold,
     },
+    heading:{
+        fontSize: theme.fontSizes.heading
+    },
     subheading: {
         fontSize: theme.fontSizes.Subheading
     },
@@ -40,6 +43,7 @@ export default function StyledText({ align,children, color, fontSize,spacingBott
         styles.text,
         color === 'primary' && styles.colorPrimary,
         color === 'secondary' && styles.colorSecondary,
+        fontSize === 'heading' && styles.heading,
         fontSize === 'subheading' && styles.subheading,
         fontSize === 'small' && styles.small,
         fontWeight === 'bold' && styles.bold,

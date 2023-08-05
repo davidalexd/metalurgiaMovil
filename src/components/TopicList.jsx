@@ -9,8 +9,7 @@ const TopicList = () => {
         navigate('InfoCard', { item })
 
     }
-    //const image_url='../assets/background.png'
-    //const loadImage = imageName => (require(`../assets/${imageName}`).default);
+
     return (
         <View>
             {repositories.map((repo) => <TouchableWithoutFeedback key={repo.id} onPress={() => handlerViewPress(repo)}>

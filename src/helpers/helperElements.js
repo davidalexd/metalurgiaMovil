@@ -24,6 +24,7 @@ export const organizeInitialValues = (items) => {
         if (item.type !== "label") {
             obj[item.id] = '';
         }
+        return obj
     }, {});
     return initialValuesForm
 }

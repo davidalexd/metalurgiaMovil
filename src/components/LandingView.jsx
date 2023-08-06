@@ -7,7 +7,7 @@ const LandingView = () => {
   const { navigate } = useNavigation();
   const handlerViewPress = (e) => {
 
-    navigate('Main')
+    navigate('DrawerGroup')
 
   }
 

@@ -1,14 +1,30 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import StyledText from './StyledText'
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import RowWithColumns from './RowWithColumns';
 import { organizeElementsInRows, organizeInitialValues } from '../helpers/helperElements';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 
 const CalculationInfo = ({ route }) => {
     const { item: { description, title, efficiency, cal_image, elements,resElements,numberCols, id } } = route.params;
+
+
+
+    const navigation = useNavigation()
+
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        headerTitle: title
+      })
+  
+    }, [])
+
+    
+
+
     return (
         <View style={styles.container}>
             <ImageBackground

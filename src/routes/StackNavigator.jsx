@@ -5,16 +5,17 @@ import MainView from '../components/MainView';
 import CardInfoView from '../components/CardInfoView';
 
 import CalculationInfo from '../components/CalculationInfo';
+import TabNavigator from './TabNavigator';
 const Stack = createNativeStackNavigator();
 
 const StackNavigator = () => {
 
   return (
-      <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen name="HomeScreen" component={MainView} />
-        <Stack.Screen name="InfoCard" component={CardInfoView}  />
-        <Stack.Screen name="InfoCalculate" component={CalculationInfo}  />
-      </Stack.Navigator>
+    <Stack.Navigator initialRouteName="TabGroup">
+      <Stack.Screen name="TabGroup" options={{ headerShown: false }} component={TabNavigator} />
+      <Stack.Screen name="InfoCard" options={{ presentation: 'modal' }} component={CardInfoView} />
+      <Stack.Screen name="InfoCalculate" options={{ presentation: 'modal' }} component={CalculationInfo} />
+    </Stack.Navigator>
   );
 };
 
